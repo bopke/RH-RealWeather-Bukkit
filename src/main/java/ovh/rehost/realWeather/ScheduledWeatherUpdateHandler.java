@@ -15,12 +15,12 @@ public class ScheduledWeatherUpdateHandler implements Runnable {
     @Override
     public void run() {
         if (weatherID < 700) {
-            RealWeather.setCurrentWeather(RealWeather.WeatherStates.rain);
+            RealWeather.setCurrentWeather(RealWeather.WeatherStates.RAIN);
             for (String i : RealWeather.getAffectedWorlds()) {
                 plugin.getServer().getWorld(i).setStorm(true);
             }
         } else {
-            RealWeather.setCurrentWeather(RealWeather.WeatherStates.clear);
+            RealWeather.setCurrentWeather(RealWeather.WeatherStates.CLEAR);
             for (String i : RealWeather.getAffectedWorlds()) {
                 plugin.getServer().getWorld(i).setStorm(false);
             }

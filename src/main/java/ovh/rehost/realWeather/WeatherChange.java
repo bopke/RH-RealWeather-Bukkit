@@ -12,13 +12,13 @@ public class WeatherChange implements Listener {
         if (!RealWeather.getAffectedWorlds().contains(event.getWorld().getName())) return;
         // event.toWeatherState true = rain, false = otherwise
         if (event.toWeatherState()) {
-            if (RealWeather.getCurrentWeather() == RealWeather.WeatherStates.clear) {
+            if (RealWeather.getCurrentWeather() == RealWeather.WeatherStates.CLEAR) {
                 event.setCancelled(true);
             } else {
                 event.setCancelled(false);
             }
         } else {
-            if (RealWeather.getCurrentWeather() == RealWeather.WeatherStates.clear) {
+            if (RealWeather.getCurrentWeather() == RealWeather.WeatherStates.CLEAR) {
                 event.setCancelled(false);
             } else {
                 event.setCancelled(true);
