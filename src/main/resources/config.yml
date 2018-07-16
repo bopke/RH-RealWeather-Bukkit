@@ -1,0 +1,9 @@
+# This plugin uses openweathermap api to gather information about current weather.
+# See http://bulk.openweathermap.org/sample/city.list.json.gz for list of supported countries and cities.
+
+API_Key: YOUR_API_KEY_HERE
+country: PL
+city: Warszawa
+
+worlds:
+  - world

@@ -1,0 +1,7 @@
+name: RH-RealWeather
+version: '0.1BETA'
+author: 'Michał "Bopke" Kubik'
+main: ovh.rehost.realWeather.RealWeather
+softdepend: []
+depend: []
+website: re-host.ovh
