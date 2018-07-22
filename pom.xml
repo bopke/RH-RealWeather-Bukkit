@@ -6,7 +6,7 @@
 
     <groupId>ovh.re-host.RealWeather</groupId>
     <artifactId>RealWeather</artifactId>
-    <version>0.2BETA</version>
+    <version>0.3BETA</version>
     <build>
         <plugins>
             <plugin>

@@ -1,5 +1,6 @@
 package ovh.rehost.realWeather;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
@@ -22,10 +23,11 @@ public class RealWeather extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        affectedWorlds = getConfig().getStringList("worlds");
-        city = getConfig().getString("city");
-        country = getConfig().getString("country");
-        apikey = getConfig().getString("API_Key");
+        FileConfiguration config = getConfig();
+        affectedWorlds = config.getStringList("worlds");
+        city = config.getString("city");
+        country = config.getString("country");
+        apikey = config.getString("API_Key");
 
         this.getLogger().info(String.format("Gathering information about current weather in %s,%s...", city, country));
         if (!ScheduledWeatherStateUpdateHandler.testAndSetup(this)) {
@@ -33,7 +35,7 @@ public class RealWeather extends JavaPlugin {
             this.getPluginLoader().disablePlugin(this);
         }
 
-        getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(this), 100L, 6000L);
+        getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(), 100L, 6000L);
     }
 
     static String getCity() {
@@ -63,7 +65,5 @@ public class RealWeather extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // TODO: IT DONT WORK BUT I'LL LEAVE IT HERE
-        getServer().getScheduler().cancelTasks(this);
     }
 }
