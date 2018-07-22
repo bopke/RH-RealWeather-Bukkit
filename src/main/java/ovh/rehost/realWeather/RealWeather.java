@@ -8,12 +8,6 @@ import java.util.List;
 
 public class RealWeather extends JavaPlugin {
 
-    public enum WeatherStates {
-        THUNDERSTORM, RAIN, CLEAR
-    }
-
-    private static WeatherStates currentWeather;
-
     private static String country;
     private static String city;
     private static String apikey;
@@ -23,17 +17,15 @@ public class RealWeather extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        FileConfiguration config = getConfig();
-        affectedWorlds = config.getStringList("worlds");
-        city = config.getString("city");
-        country = config.getString("country");
-        apikey = config.getString("API_Key");
+        loadNewConfigValues();
 
         this.getLogger().info(String.format("Gathering information about current weather in %s,%s...", city, country));
         if (!ScheduledWeatherStateUpdateHandler.testAndSetup(this)) {
             this.getLogger().severe("Problem occured when trying to gather information about current weather. Shutting down...");
             this.getPluginLoader().disablePlugin(this);
         }
+
+        this.getCommand("rh-realweather").setExecutor(new realweatherCommand(this));
 
         getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(), 100L, 6000L);
     }
@@ -55,12 +47,17 @@ public class RealWeather extends JavaPlugin {
         return affectedWorlds;
     }
 
-    static WeatherStates getCurrentWeather() {
-        return currentWeather;
+    private void loadNewConfigValues() {
+        FileConfiguration config = getConfig();
+        affectedWorlds = config.getStringList("worlds");
+        city = config.getString("city");
+        country = config.getString("country");
+        apikey = config.getString("API_Key");
     }
 
-    static void setCurrentWeather(WeatherStates state) {
-        currentWeather = state;
+    void reloadPluginConfig() {
+        reloadConfig();
+        loadNewConfigValues();
     }
 
     @Override

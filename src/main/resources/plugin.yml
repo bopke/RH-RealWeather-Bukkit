@@ -1,7 +1,26 @@
 name: RH-RealWeather
-version: '0.3BETA'
+version: '0.4BETA'
 author: 'Michał "Bopke" Kubik'
 main: ovh.rehost.realWeather.RealWeather
 softdepend: []
 depend: []
 website: re-host.ovh
+commands:
+  rh-realweather:
+    description: Administrative command for RH-RealWeather.
+    permission: rh.realweather.reload
+    usage: /<command> reload
+permissions:
+  rh.*:
+    description: Grants full access to all rh plugins.
+    default: op
+    children:
+      rh.RealWeather: true
+  rh.realweather.*:
+    description: Grants full access to RealWeather.
+    default: op
+    children:
+      rh.realweather.reload: true
+  rh.realweather.reload:
+    description: Grants access to /rh-realweather reload.
+    default: op
