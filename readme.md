@@ -1,4 +1,4 @@
-# RealWeather
+# RH-RealWeather
 
 Simple plugin that keeps the weather on selected worlds synchronized with real world weather
 
