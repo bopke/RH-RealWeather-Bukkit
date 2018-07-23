@@ -17,9 +17,9 @@ public class RealweatherCommand implements CommandExecutor {
         if (commandSender.hasPermission("rh.realweather.reload")) {
             if (strings.length == 1) {
                 if (strings[0].equalsIgnoreCase("reload")) {
-                    this.plugin.getLogger().info(RealWeather.getMessages().get("reloading-config"));
+                    this.plugin.getLogger().info(plugin.getMessages().get("reloading-config"));
                     this.plugin.reloadPlugin();
-                    commandSender.sendMessage(RealWeather.getMessages().get("reloaded-config"));
+                    commandSender.sendMessage(plugin.getMessages().get("reloaded-config"));
                     return true;
                 }
             }

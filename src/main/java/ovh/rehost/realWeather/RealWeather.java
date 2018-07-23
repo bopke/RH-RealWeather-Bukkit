@@ -12,15 +12,15 @@ import java.util.Map;
 
 public class RealWeather extends JavaPlugin {
 
-    private static String country;
-    private static String city;
-    private static String apikey;
-    private static int interval;
+    private String country;
+    private String city;
+    private String apikey;
+    private int interval;
 
     private BukkitTask task;
 
-    private static List<String> affectedWorlds;
-    private static Map<String, String> messages = new HashMap<String, String>();
+    private List<String> affectedWorlds;
+    private Map<String, String> messages = new HashMap<String, String>();
 
     @Override
     public void onEnable() {
@@ -38,28 +38,28 @@ public class RealWeather extends JavaPlugin {
         task = getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(), 100L, (long) interval);
     }
 
-    static String getCity() {
-        return city;
+    String getCity() {
+        return this.city;
     }
 
-    static String getCountry() {
-        return country;
+    String getCountry() {
+        return this.country;
     }
 
-    static String getApikey() {
-        return apikey;
+    String getApikey() {
+        return this.apikey;
     }
 
-    static int getInterval() {
-        return interval;
+    int getInterval() {
+        return this.interval;
     }
 
-    static Map<String, String> getMessages() {
-        return messages;
+    Map<String, String> getMessages() {
+        return this.messages;
     }
 
-    static List<String> getAffectedWorlds() {
-        return affectedWorlds;
+    List<String> getAffectedWorlds() {
+        return this.affectedWorlds;
     }
 
     private void loadNewConfigValues() {

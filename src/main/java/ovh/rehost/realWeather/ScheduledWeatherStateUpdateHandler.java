@@ -15,7 +15,7 @@ import java.net.URL;
 
 public class ScheduledWeatherStateUpdateHandler implements Runnable {
 
-    private static Plugin plugin;
+    private static RealWeather plugin;
 
 
     ScheduledWeatherStateUpdateHandler() {
@@ -25,7 +25,7 @@ public class ScheduledWeatherStateUpdateHandler implements Runnable {
         StringBuilder result = new StringBuilder();
         URL url;
         try {
-            url = new URL(String.format("https://api.openweathermap.org/data/2.5/weather?q=%s,%s&appid=%s", RealWeather.getCity(), RealWeather.getCountry(), RealWeather.getApikey()));
+            url = new URL(String.format("https://api.openweathermap.org/data/2.5/weather?q=%s,%s&appid=%s", plugin.getCity(), plugin.getCountry(), plugin.getApikey()));
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -44,7 +44,7 @@ public class ScheduledWeatherStateUpdateHandler implements Runnable {
         return -1;
     }
 
-    static boolean testAndSetup(Plugin plug) {
+    static boolean testAndSetup(RealWeather plug) {
         try {
             plugin = plug;
             int weatherID = getActualWeatherID();
