@@ -16,7 +16,7 @@ public class RealweatherCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender.hasPermission("rh.realweather.reload")) {
             if (strings != null && strings.length == 1) {
-                if (strings[0].toLowerCase().equals("reload")) {
+                if (strings[0].equalsIgnoreCase("reload")) {
                     this.plugin.getLogger().info("Reloading config.");
                     this.plugin.reloadPlugin();
                     commandSender.sendMessage("Config reloaded.");
