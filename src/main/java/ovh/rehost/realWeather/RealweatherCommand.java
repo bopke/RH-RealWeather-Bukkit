@@ -18,7 +18,8 @@ public class RealweatherCommand implements CommandExecutor {
             if (strings != null && strings.length == 1) {
                 if (strings[0].toLowerCase().equals("reload")) {
                     this.plugin.getLogger().info("Reloading config.");
-                    this.plugin.reloadPluginConfig();
+                    this.plugin.reloadPlugin();
+                    commandSender.sendMessage("Config reloaded.");
                     return true;
                 }
             }

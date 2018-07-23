@@ -2,6 +2,7 @@ package ovh.rehost.realWeather;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.List;
 
@@ -11,6 +12,9 @@ public class RealWeather extends JavaPlugin {
     private static String country;
     private static String city;
     private static String apikey;
+    private static int interval;
+
+    private BukkitTask task;
 
     private static List<String> affectedWorlds;
 
@@ -27,7 +31,7 @@ public class RealWeather extends JavaPlugin {
 
         this.getCommand("rh-realweather").setExecutor(new RealweatherCommand(this));
 
-        getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(), 100L, 6000L);
+        task = getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(), 100L, (long) interval);
     }
 
     static String getCity() {
@@ -42,6 +46,9 @@ public class RealWeather extends JavaPlugin {
         return apikey;
     }
 
+    static int getInterval() {
+        return interval;
+    }
 
     static List<String> getAffectedWorlds() {
         return affectedWorlds;
@@ -53,11 +60,18 @@ public class RealWeather extends JavaPlugin {
         city = config.getString("city");
         country = config.getString("country");
         apikey = config.getString("API_Key");
+        interval = config.getInt("interval");
     }
 
-    void reloadPluginConfig() {
+    private void reloadPluginConfig() {
         reloadConfig();
         loadNewConfigValues();
+    }
+
+    void reloadPlugin() {
+        reloadPluginConfig();
+        getServer().getScheduler().cancelTask(task.getTaskId());
+        task = getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(), 0L, (long) interval);
     }
 
     @Override

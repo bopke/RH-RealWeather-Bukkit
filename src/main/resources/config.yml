@@ -5,5 +5,9 @@ API_Key: YOUR_API_KEY_HERE
 country: PL
 city: Warszawa
 
+#Interval in ticks between checks. 20 ticks = 1 second.
+#6000 is recommended value.
+interval: 6000
+
 worlds:
   - world

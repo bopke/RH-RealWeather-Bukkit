@@ -17,8 +17,8 @@ public class ScheduledWeatherUpdateHandler implements Runnable {
         for (String i : RealWeather.getAffectedWorlds()) {
             plugin.getServer().getWorld(i).setStorm(weatherID < 700);
             plugin.getServer().getWorld(i).setThundering(weatherID < 300);
-            plugin.getServer().getWorld(i).setWeatherDuration(12000); // twice longer than typical interval between checks
-            plugin.getServer().getWorld(i).setThunderDuration(12000);
+            plugin.getServer().getWorld(i).setWeatherDuration(RealWeather.getInterval() * 2); // twice longer than typical interval between checks, just to be sure.
+            plugin.getServer().getWorld(i).setThunderDuration(RealWeather.getInterval() * 2);
         }
     }
 }
