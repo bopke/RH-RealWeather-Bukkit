@@ -15,11 +15,11 @@ public class RealweatherCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender.hasPermission("rh.realweather.reload")) {
-            if (strings != null && strings.length == 1) {
+            if (strings.length == 1) {
                 if (strings[0].equalsIgnoreCase("reload")) {
-                    this.plugin.getLogger().info("Reloading config.");
+                    this.plugin.getLogger().info(RealWeather.getMessages().get("reloading-config"));
                     this.plugin.reloadPlugin();
-                    commandSender.sendMessage("Config reloaded.");
+                    commandSender.sendMessage(RealWeather.getMessages().get("reloaded-config"));
                     return true;
                 }
             }

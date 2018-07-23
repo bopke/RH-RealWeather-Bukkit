@@ -1,10 +1,13 @@
 package ovh.rehost.realWeather;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class RealWeather extends JavaPlugin {
@@ -17,15 +20,16 @@ public class RealWeather extends JavaPlugin {
     private BukkitTask task;
 
     private static List<String> affectedWorlds;
+    private static Map<String, String> messages = new HashMap<String, String>();
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         loadNewConfigValues();
 
-        this.getLogger().info(String.format("Gathering information about current weather in %s,%s...", city, country));
+        this.getLogger().info(messages.get("localisation-information").replaceAll("%city%", city).replaceAll("%country%", country));
         if (!ScheduledWeatherStateUpdateHandler.testAndSetup(this)) {
-            this.getLogger().severe("Problem occured when trying to gather information about current weather. Shutting down...");
+            this.getLogger().severe(messages.get("setup-error"));
             this.getPluginLoader().disablePlugin(this);
         }
 
@@ -50,6 +54,10 @@ public class RealWeather extends JavaPlugin {
         return interval;
     }
 
+    static Map<String, String> getMessages() {
+        return messages;
+    }
+
     static List<String> getAffectedWorlds() {
         return affectedWorlds;
     }
@@ -61,6 +69,11 @@ public class RealWeather extends JavaPlugin {
         country = config.getString("country");
         apikey = config.getString("API_Key");
         interval = config.getInt("interval");
+        ConfigurationSection mess = config.getConfigurationSection("messages");
+        messages.put("localisation-information", mess.getString("localisation-information"));
+        messages.put("setup-error", mess.getString("setup-error"));
+        messages.put("reloading-config", mess.getString("reloading-config"));
+        messages.put("reloaded-config", mess.getString("reloaded-config"));
     }
 
     private void reloadPluginConfig() {

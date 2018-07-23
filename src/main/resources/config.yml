@@ -5,9 +5,19 @@ API_Key: YOUR_API_KEY_HERE
 country: PL
 city: Warszawa
 
-#Interval in ticks between checks. 20 ticks = 1 second.
-#6000 is recommended value.
+# Interval in ticks between checks. 20 ticks = 1 second.
+# 6000 is recommended value.
 interval: 6000
 
 worlds:
   - world
+
+messages:
+  # appears on startup. Available formatters: %city%,%country%
+  localisation-information: Gathering information about current weather in %city%,%country%...
+  # appears when API response is incorrect
+  setup-error: Problem occured when trying to gather information about current weather. Shutting down.
+  # appears on reload command, before reloading config
+  reloading-config: Reloading config.
+  # appears on reload command, after reloading config
+  reloaded-config: Config reloaded.
