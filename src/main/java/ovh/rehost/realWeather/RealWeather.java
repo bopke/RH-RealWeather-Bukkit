@@ -25,7 +25,7 @@ public class RealWeather extends JavaPlugin {
             this.getPluginLoader().disablePlugin(this);
         }
 
-        this.getCommand("rh-realweather").setExecutor(new realweatherCommand(this));
+        this.getCommand("rh-realweather").setExecutor(new RealweatherCommand(this));
 
         getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(), 100L, 6000L);
     }

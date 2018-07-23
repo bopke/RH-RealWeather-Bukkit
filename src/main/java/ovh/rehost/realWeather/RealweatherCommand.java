@@ -4,11 +4,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class realweatherCommand implements CommandExecutor {
+public class RealweatherCommand implements CommandExecutor {
 
     private final RealWeather plugin;
 
-    realweatherCommand(RealWeather plugin) {
+    RealweatherCommand(RealWeather plugin) {
         this.plugin = plugin;
     }
 
