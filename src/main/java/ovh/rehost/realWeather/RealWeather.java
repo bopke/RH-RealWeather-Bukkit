@@ -28,14 +28,10 @@ public class RealWeather extends JavaPlugin {
         loadNewConfigValues();
 
         this.getLogger().info(messages.get("localisation-information").replaceAll("%city%", city).replaceAll("%country%", country));
-        if (!ScheduledWeatherStateUpdateHandler.testAndSetup(this)) {
-            this.getLogger().severe(messages.get("setup-error"));
-            this.getPluginLoader().disablePlugin(this);
-        }
 
         this.getCommand("rh-realweather").setExecutor(new RealweatherCommand(this));
 
-        task = getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(), 100L, (long) interval);
+        task = getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(this), 0L, (long) interval);
     }
 
     String getCity() {
@@ -71,9 +67,10 @@ public class RealWeather extends JavaPlugin {
         interval = config.getInt("interval");
         ConfigurationSection mess = config.getConfigurationSection("messages");
         messages.put("localisation-information", mess.getString("localisation-information"));
-        messages.put("setup-error", mess.getString("setup-error"));
+        messages.put("invalid-response-code", mess.getString("invalid-response-code"));
         messages.put("reloading-config", mess.getString("reloading-config"));
         messages.put("reloaded-config", mess.getString("reloaded-config"));
+        messages.put("API-offline", mess.getString("API-offline"));
     }
 
     private void reloadPluginConfig() {
@@ -84,7 +81,7 @@ public class RealWeather extends JavaPlugin {
     void reloadPlugin() {
         reloadPluginConfig();
         getServer().getScheduler().cancelTask(task.getTaskId());
-        task = getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(), 0L, (long) interval);
+        task = getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(this), 0L, (long) interval);
     }
 
     @Override

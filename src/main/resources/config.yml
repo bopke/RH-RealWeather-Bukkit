@@ -9,15 +9,18 @@ city: Warszawa
 # 6000 is recommended value.
 interval: 6000
 
+# List of worlds where the weather should be affected by this plugin.
 worlds:
   - world
 
 messages:
   # appears on startup. Available formatters: %city%,%country%
   localisation-information: Gathering information about current weather in %city%,%country%...
-  # appears when API response is incorrect
-  setup-error: Problem occured when trying to gather information about current weather. Shutting down.
-  # appears on reload command, before reloading config
+  # appears when API response is incorrect.
+  invalid-response-code: Problem occured when trying to gather information about current weather. API returned invalid response code.
+  # appears when API is unreachable.
+  API-offline: Weather API is unreachable.
+  # appears on reload command, before reloading config.
   reloading-config: Reloading config.
-  # appears on reload command, after reloading config
+  # appears on reload command, after reloading config.
   reloaded-config: Config reloaded.
