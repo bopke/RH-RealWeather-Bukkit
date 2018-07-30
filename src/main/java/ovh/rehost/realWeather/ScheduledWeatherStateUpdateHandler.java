@@ -40,9 +40,7 @@ public class ScheduledWeatherStateUpdateHandler implements Runnable {
             str = result.toString();
             JsonObject json = new JsonParser().parse(str).getAsJsonObject().getAsJsonArray("weather").get(0).getAsJsonObject();
             return json.getAsJsonPrimitive("id").getAsInt();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
+        } catch (MalformedURLException | ProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
             if (e instanceof UnknownHostException) {
