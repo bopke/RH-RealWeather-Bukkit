@@ -7,6 +7,8 @@ city: Warszawa
 
 # Interval in ticks between checks. 20 ticks = 1 second.
 # 6000 is recommended value.
+# NOTE: If you are using free API key, it's limited to 60 updates every minute,
+# so values lower than 20 could result in invalid-response-code warnings displayed in console
 interval: 6000
 
 # List of worlds where the weather should be affected by this plugin.
