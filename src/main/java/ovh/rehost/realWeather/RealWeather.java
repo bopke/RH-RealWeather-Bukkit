@@ -1,5 +1,6 @@
 package ovh.rehost.realWeather;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,7 +21,7 @@ public class RealWeather extends JavaPlugin {
     private BukkitTask task;
 
     private List<String> affectedWorlds;
-    private Map<String, String> messages = new HashMap<String, String>();
+    private Map<String, String> messages = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -66,11 +67,11 @@ public class RealWeather extends JavaPlugin {
         apikey = config.getString("API_Key");
         interval = config.getInt("interval");
         ConfigurationSection mess = config.getConfigurationSection("messages");
-        messages.put("localisation-information", mess.getString("localisation-information"));
-        messages.put("invalid-response-code", mess.getString("invalid-response-code"));
-        messages.put("reloading-config", mess.getString("reloading-config"));
-        messages.put("reloaded-config", mess.getString("reloaded-config"));
-        messages.put("API-offline", mess.getString("API-offline"));
+        messages.put("localisation-information", ChatColor.translateAlternateColorCodes('&', mess.getString("localisation-information")));
+        messages.put("invalid-response-code", ChatColor.translateAlternateColorCodes('&', mess.getString("invalid-response-code")));
+        messages.put("reloading-config", ChatColor.translateAlternateColorCodes('&', mess.getString("reloading-config")));
+        messages.put("reloaded-config", ChatColor.translateAlternateColorCodes('&', mess.getString("reloaded-config")));
+        messages.put("API-offline", ChatColor.translateAlternateColorCodes('&', mess.getString("API-offline")));
     }
 
     private void reloadPluginConfig() {
