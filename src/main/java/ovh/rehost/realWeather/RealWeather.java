@@ -30,7 +30,7 @@ public class RealWeather extends JavaPlugin {
 
         this.getLogger().info(messages.get("localisation-information").replaceAll("%city%", city).replaceAll("%country%", country));
 
-        this.getCommand("rh-realweather").setExecutor(new RealweatherCommand(this));
+        this.getCommand("realweather").setExecutor(new RealweatherCommand(this));
 
         task = getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(this), 0L, (long) interval);
     }
@@ -83,9 +83,5 @@ public class RealWeather extends JavaPlugin {
         reloadPluginConfig();
         getServer().getScheduler().cancelTask(task.getTaskId());
         task = getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(this), 0L, (long) interval);
-    }
-
-    @Override
-    public void onDisable() {
     }
 }
