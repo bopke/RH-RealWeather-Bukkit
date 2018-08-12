@@ -85,7 +85,4 @@ public class RealWeather extends JavaPlugin {
         task = getServer().getScheduler().runTaskTimerAsynchronously(this, new ScheduledWeatherStateUpdateHandler(this), 0L, (long) interval);
     }
 
-    @Override
-    public void onDisable() {
-    }
 }
