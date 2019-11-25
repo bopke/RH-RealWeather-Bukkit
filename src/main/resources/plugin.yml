@@ -5,6 +5,7 @@ main: ovh.rehost.realWeather.RealWeather
 softdepend: []
 depend: []
 website: re-host.ovh
+api-version: 1.14
 commands:
   rh-realweather:
     description: Administrative command for RH-RealWeather.
