@@ -1,4 +1,4 @@
-package ovh.rehost.realWeather;
+package pl.rehost.realWeather;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

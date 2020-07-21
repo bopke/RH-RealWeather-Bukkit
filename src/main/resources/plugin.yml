@@ -2,10 +2,10 @@ api-level: 1.16
 name: RH-RealWeather
 version: '1.2'
 author: 'Michał "Bopke" Kubik'
-main: ovh.rehost.realWeather.RealWeather
+main: pl.rehost.realWeather.RealWeather
 softdepend: []
 depend: []
-website: re-host.ovh
+website: rehost.pl
 commands:
   rh-realweather:
     description: Administrative command for RH-RealWeather.

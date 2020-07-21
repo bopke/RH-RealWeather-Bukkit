@@ -1,4 +1,4 @@
-package ovh.rehost.realWeather;
+package pl.rehost.realWeather;
 
 public class ScheduledWeatherUpdateHandler implements Runnable {
 
