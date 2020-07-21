@@ -1,5 +1,6 @@
+api-level: 1.16
 name: RH-RealWeather
-version: '1.1'
+version: '1.2'
 author: 'Michał "Bopke" Kubik'
 main: ovh.rehost.realWeather.RealWeather
 softdepend: []
