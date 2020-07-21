@@ -21,7 +21,7 @@ public class RealWeather extends JavaPlugin {
     private BukkitTask task;
 
     private List<String> affectedWorlds;
-    private Map<String, String> messages = new HashMap<>();
+    private final Map<String, String> messages = new HashMap<>();
 
     @Override
     public void onEnable() {

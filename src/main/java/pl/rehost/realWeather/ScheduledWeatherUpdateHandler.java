@@ -2,8 +2,8 @@ package pl.rehost.realWeather;
 
 public class ScheduledWeatherUpdateHandler implements Runnable {
 
-    private int weatherID;
-    private RealWeather plugin;
+    private final int weatherID;
+    private final RealWeather plugin;
 
     ScheduledWeatherUpdateHandler(RealWeather plugin, int weatherID) {
         this.weatherID = weatherID;

@@ -15,7 +15,7 @@ import java.net.UnknownHostException;
 
 public class ScheduledWeatherStateUpdateHandler implements Runnable {
 
-    private RealWeather plugin;
+    private final RealWeather plugin;
 
 
     ScheduledWeatherStateUpdateHandler(RealWeather plugin) {
